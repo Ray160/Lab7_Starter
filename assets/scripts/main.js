@@ -61,6 +61,19 @@ function initializeServiceWorker() {
    *  TODO - Part 2 Step 1
    *  Initialize the service worker set up in sw.js
    */
+  
+   if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function(err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+  
 }
 
 /**
@@ -220,12 +233,11 @@ function bindPopstate() {
    * creating an infinite loop
    */
 
-  window.onpopstate = function() {
-    if(document.location.hash.substring(1)){
-      router.navigate(document.location.hash.substring(1), true);
+  window.addEventListener('popstate', e => {
+    if(e.state != null){
+      router.navigate(e.state.page, true);
     }else{
       router.navigate('home',true);
     }
-    
-  };
+  });
 }
