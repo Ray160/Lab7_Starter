@@ -11,10 +11,9 @@ self.addEventListener('install', function (event) {
    */
   console.log("INSTALL");
    const urlsToCache = [
-      '/',
-      '/assets/styles/main.css',
-      '/assets/scripts/main.js',
-      '/assets/scripts/Router.js'
+      'assets/styles/main.css',
+      'assets/scripts/main.js',
+      'assets/scripts/Router.js'
     ];
 
     //urlsToCache.concat(recipes);
